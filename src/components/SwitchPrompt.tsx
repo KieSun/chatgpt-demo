@@ -22,7 +22,7 @@ const SwitchPrompt = (props: IProps) => {
   return (
     <div>
       <Select
-        initialValue={localStorage.getItem('prompt') || 'Write js code'}
+        initialValue={localStorage.getItem('prompt') || 'Custom prompt'}
         class="custom"
         options={Object.keys(prompt)}
         onChange={(v) => {
