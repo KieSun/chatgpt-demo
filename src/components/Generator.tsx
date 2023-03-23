@@ -9,6 +9,7 @@ import SwitchPrompt from './SwitchPrompt'
 import type { ChatMessage, ErrorMessage } from '@/types'
 
 let timer
+let isLoad = false
 
 inject()
 
@@ -184,6 +185,11 @@ export default () => {
   }
 
   const handlePromptChange = (v) => {
+    if (isLoad)
+      clear()
+    else
+      isLoad = true
+
     clear()
     setCurrentSystemRoleSettings(v)
   }
