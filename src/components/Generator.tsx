@@ -1,14 +1,15 @@
-import { Index, Show, createSignal, onCleanup, onMount } from 'solid-js'
+import { Index, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js'
 import { useThrottleFn } from 'solidjs-use'
 import { generateSignature } from '@/utils/auth'
 import IconClear from './icons/Clear'
 import MessageItem from './MessageItem'
-import SystemRoleSettings from './SystemRoleSettings'
 import ErrorMessageItem from './ErrorMessageItem'
+import SwitchPrompt from './SwitchPrompt'
 import type { ChatMessage, ErrorMessage } from '@/types'
 
 export default () => {
   let inputRef: HTMLTextAreaElement
+  let messageRef: HTMLDivElement
   const [currentSystemRoleSettings, setCurrentSystemRoleSettings] = createSignal('')
   const [systemRoleEditing, setSystemRoleEditing] = createSignal(false)
   const [messageList, setMessageList] = createSignal<ChatMessage[]>([])
@@ -177,60 +178,72 @@ export default () => {
       handleButtonClick()
   }
 
+  const handlePromptChange = (v) => {
+    clear()
+    setCurrentSystemRoleSettings(v)
+  }
+
+  createEffect(() => {
+    let timer
+    if (loading()) {
+      timer = setInterval(() => {
+        messageRef.scrollTo(0, messageRef.scrollHeight)
+      }, 500)
+    } else {
+      timer && clearInterval(timer)
+    }
+  })
+
   return (
     <div my-6>
-      <SystemRoleSettings
-        canEdit={() => messageList().length === 0}
-        systemRoleEditing={systemRoleEditing}
-        setSystemRoleEditing={setSystemRoleEditing}
-        currentSystemRoleSettings={currentSystemRoleSettings}
-        setCurrentSystemRoleSettings={setCurrentSystemRoleSettings}
-      />
-      <Index each={messageList()}>
-        {(message, index) => (
-          <MessageItem
-            role={message().role}
-            message={message().content}
-            showRetry={() => (message().role === 'assistant' && index === messageList().length - 1)}
-            onRetry={retryLastFetch}
-          />
-        )}
-      </Index>
-      {currentAssistantMessage() && (
+      <SwitchPrompt onChange={handlePromptChange} />
+      <div class="overflow-y-scroll overflow-x-hidden mt" style={{ height: '55vh' }} ref={messageRef}>
+        <Index each={messageList()}>
+          {(message, index) => (
+            <MessageItem
+              role={message().role}
+              message={message().content}
+              showRetry={() => (message().role === 'assistant' && index === messageList().length - 1)}
+              onRetry={retryLastFetch}
+            />
+          )}
+        </Index>
+        {currentAssistantMessage() && (
         <MessageItem
           role="assistant"
           message={currentAssistantMessage}
         />
-      )}
-      { currentError() && <ErrorMessageItem data={currentError()} onRetry={retryLastFetch} /> }
+        )}
+      </div>
+      {currentError() && <ErrorMessageItem data={currentError()} onRetry={retryLastFetch} />}
       <Show
         when={!loading()}
         fallback={() => (
-          <div class="gen-cb-wrapper">
+          <div className="gen-cb-wrapper">
             <span>AI is thinking...</span>
-            <div class="gen-cb-stop" onClick={stopStreamFetch}>Stop</div>
+            <div className="gen-cb-stop" onClick={stopStreamFetch}>Stop</div>
           </div>
         )}
       >
-        <div class="gen-text-wrapper" class:op-50={systemRoleEditing()}>
+        <div className="gen-text-wrapper" class:op-50={systemRoleEditing()}>
           <textarea
             ref={inputRef!}
             disabled={systemRoleEditing()}
             onKeyDown={handleKeydown}
             placeholder="Enter something..."
-            autocomplete="off"
-            autofocus
+            autoComplete="off"
+            autoFocus
             onInput={() => {
               inputRef.style.height = 'auto'
               inputRef.style.height = `${inputRef.scrollHeight}px`
             }}
             rows="1"
-            class="gen-textarea"
+            className="gen-textarea"
           />
-          <button onClick={handleButtonClick} disabled={systemRoleEditing()} gen-slate-btn>
+          <button onClick={handleButtonClick} gen-slate-btn>
             Send
           </button>
-          <button title="Clear" onClick={clear} disabled={systemRoleEditing()} gen-slate-btn>
+          <button title="Clear" onClick={clear} gen-slate-btn>
             <IconClear />
           </button>
         </div>

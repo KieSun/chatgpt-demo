@@ -7,6 +7,7 @@ specifiers:
   '@astrojs/vercel': ^3.1.3
   '@evan-yang/eslint-config': ^1.0.1
   '@iconify-json/carbon': ^1.1.16
+  '@thisbeyond/solid-select': ^0.13.0
   '@types/markdown-it': ^12.2.3
   '@typescript-eslint/parser': ^5.54.1
   '@unocss/preset-attributify': ^0.50.1
@@ -34,6 +35,7 @@ dependencies:
   '@astrojs/node': 5.1.0_astro@2.1.3
   '@astrojs/solid-js': 2.1.0_fqjiu6dx33dr7dveogf7j2esim
   '@astrojs/vercel': 3.2.1_astro@2.1.3+react@18.2.0
+  '@thisbeyond/solid-select': 0.13.0_solid-js@1.6.12
   '@unocss/reset': 0.50.4
   astro: 2.1.3
   eslint: 8.36.0
@@ -58,7 +60,7 @@ devDependencies:
   '@unocss/preset-typography': 0.50.4
   eslint-plugin-astro: 0.24.0_eslint@8.36.0
   punycode: 2.3.0
-  unocss: 0.50.4_vite@4.1.4
+  unocss: 0.50.4_postcss@8.4.21+vite@4.1.4
 
 packages:
 
@@ -721,7 +723,7 @@ packages:
       eslint-import-resolver-typescript: 2.7.1_eakrjjutlgqjxe5ydhtnd4qdmy
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.36.0
       eslint-plugin-html: 6.2.0
-      eslint-plugin-import: 2.27.5_ehloacyzzkbjdczhrjhdzdi6ba
+      eslint-plugin-import: 2.27.5_a7er6olmtneep4uytpot6gt7wu
       eslint-plugin-jsonc: 2.7.0_eslint@8.36.0
       eslint-plugin-jsx-a11y: 6.7.1_eslint@8.36.0
       eslint-plugin-markdown: 2.2.1_eslint@8.36.0
@@ -904,6 +906,14 @@ packages:
 
   /@solidjs-use/solid-to-vue/1.2.0:
     resolution: {integrity: sha512-ZmIThxUeX+D40ck0bviDEhta2WSpJd2AQYFF+rjO8zQmgySifeeiEc0Kn/Sp1BMHbLMcLboPYdOnT+6E1E9OLg==}
+    dev: false
+
+  /@thisbeyond/solid-select/0.13.0_solid-js@1.6.12:
+    resolution: {integrity: sha512-eION+Xf8TGLs1NZrvRo1NRKOl4plYMbY7UswHhh5bEUY8oMltjrBhUWF0hzaFViEc1zZpkCQyafaD89iofG6Tg==}
+    peerDependencies:
+      solid-js: ^1.5
+    dependencies:
+      solid-js: 1.6.12
     dev: false
 
   /@types/babel__core/7.20.0:
@@ -1201,9 +1211,11 @@ packages:
       sirv: 2.0.2
     dev: true
 
-  /@unocss/postcss/0.50.4:
+  /@unocss/postcss/0.50.4_postcss@8.4.21:
     resolution: {integrity: sha512-Gri+EqIOs/yKk0YHel5XLHQCRD1BzKdQHF82zizJUyqaRStR2qvR8ECInYsirXL/eUEvx2zT8iQKCXkiApTuQw==}
     engines: {node: '>=14'}
+    peerDependencies:
+      postcss: ^8.4.21
     dependencies:
       '@unocss/config': 0.50.4
       '@unocss/core': 0.50.4
@@ -2555,7 +2567,7 @@ packages:
       eslint-plugin-promise: ^6.0.0
     dependencies:
       eslint: 8.36.0
-      eslint-plugin-import: 2.27.5_ehloacyzzkbjdczhrjhdzdi6ba
+      eslint-plugin-import: 2.27.5_a7er6olmtneep4uytpot6gt7wu
       eslint-plugin-n: 15.6.1_eslint@8.36.0
       eslint-plugin-promise: 6.1.1_eslint@8.36.0
     dev: true
@@ -2579,7 +2591,7 @@ packages:
     dependencies:
       debug: 4.3.4
       eslint: 8.36.0
-      eslint-plugin-import: 2.27.5_ehloacyzzkbjdczhrjhdzdi6ba
+      eslint-plugin-import: 2.27.5_a7er6olmtneep4uytpot6gt7wu
       glob: 7.2.3
       is-glob: 4.0.3
       resolve: 1.22.1
@@ -2588,7 +2600,7 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-module-utils/2.7.4_vpmbjtxneznonqcn7xpyrnpqzq:
+  /eslint-module-utils/2.7.4_tzfhnsp6rhftjfsbnqrkrbah74:
     resolution: {integrity: sha512-j4GT+rqzCoRKHwURX7pddtIPGySnX9Si/cgMI5ztrcqOPtk5dDEeZ34CQVPphnqkJytlc97Vuk05Um2mJ3gEQA==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -2613,7 +2625,6 @@ packages:
       debug: 3.2.7
       eslint: 8.36.0
       eslint-import-resolver-node: 0.3.7
-      eslint-import-resolver-typescript: 2.7.1_eakrjjutlgqjxe5ydhtnd4qdmy
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2663,7 +2674,7 @@ packages:
       htmlparser2: 7.2.0
     dev: true
 
-  /eslint-plugin-import/2.27.5_ehloacyzzkbjdczhrjhdzdi6ba:
+  /eslint-plugin-import/2.27.5_a7er6olmtneep4uytpot6gt7wu:
     resolution: {integrity: sha512-LmEt3GVofgiGuiE+ORpnvP+kAm3h6MLZJ4Q5HCyHADofsb4VzXFsRiWj3c0OFiV+3DWFh0qg3v9gcPlfc3zRow==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -2681,7 +2692,7 @@ packages:
       doctrine: 2.1.0
       eslint: 8.36.0
       eslint-import-resolver-node: 0.3.7
-      eslint-module-utils: 2.7.4_vpmbjtxneznonqcn7xpyrnpqzq
+      eslint-module-utils: 2.7.4_tzfhnsp6rhftjfsbnqrkrbah74
       has: 1.0.3
       is-core-module: 2.11.0
       is-glob: 4.0.3
@@ -5851,7 +5862,7 @@ packages:
       unist-util-visit-parents: 5.1.3
     dev: false
 
-  /unocss/0.50.4_vite@4.1.4:
+  /unocss/0.50.4_postcss@8.4.21+vite@4.1.4:
     resolution: {integrity: sha512-9offjUEwVlAkR//0sidTyvKkSArRGkDdgSFeW4P4005GWnjmXnbx4amuAeS3Au4o8WoshZCCOi5EYrpO4aLdfg==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -5863,7 +5874,7 @@ packages:
       '@unocss/astro': 0.50.4_vite@4.1.4
       '@unocss/cli': 0.50.4
       '@unocss/core': 0.50.4
-      '@unocss/postcss': 0.50.4
+      '@unocss/postcss': 0.50.4_postcss@8.4.21
       '@unocss/preset-attributify': 0.50.4
       '@unocss/preset-icons': 0.50.4
       '@unocss/preset-mini': 0.50.4
@@ -5879,6 +5890,7 @@ packages:
       '@unocss/transformer-variant-group': 0.50.4
       '@unocss/vite': 0.50.4_vite@4.1.4
     transitivePeerDependencies:
+      - postcss
       - rollup
       - supports-color
       - vite
