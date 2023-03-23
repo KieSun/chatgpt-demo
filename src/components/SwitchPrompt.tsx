@@ -7,6 +7,7 @@ interface IProps {
 }
 
 const prompt = {
+  'Custom prompt': '',
   'Write js code': '接下来你需要扮演一个编程专家，我会将需求发给你，你需要告诉我如何用 javascript 实现。',
   'Explain code': '接下来你需要扮演一个编程专家，我会将代码发给你，只需要为我解释这段代码做了什么。',
   'Write unit test use jest': '你现在是一个编程专家，接下来我会将代码发给你，请帮我使用 jest 写一个单元测试，请至少提供五个测试案例，同时要包含到极端的状况，让我能够确定这段程式码的输出是正确的。',
