@@ -190,7 +190,6 @@ export default () => {
     else
       isLoad = true
 
-    clear()
     setCurrentSystemRoleSettings(v)
   }
 
