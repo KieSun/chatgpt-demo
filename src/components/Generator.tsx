@@ -7,6 +7,8 @@ import ErrorMessageItem from './ErrorMessageItem'
 import SwitchPrompt from './SwitchPrompt'
 import type { ChatMessage, ErrorMessage } from '@/types'
 
+let timer
+
 export default () => {
   let inputRef: HTMLTextAreaElement
   let messageRef: HTMLDivElement
@@ -184,7 +186,6 @@ export default () => {
   }
 
   createEffect(() => {
-    let timer
     if (loading()) {
       timer = setInterval(() => {
         messageRef.scrollTo(0, messageRef.scrollHeight)
