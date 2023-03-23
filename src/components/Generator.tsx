@@ -1,5 +1,6 @@
 import { Index, Show, createEffect, createSignal, onCleanup, onMount } from 'solid-js'
 import { useThrottleFn } from 'solidjs-use'
+import { inject } from '@vercel/analytics'
 import { generateSignature } from '@/utils/auth'
 import IconClear from './icons/Clear'
 import MessageItem from './MessageItem'
@@ -8,6 +9,8 @@ import SwitchPrompt from './SwitchPrompt'
 import type { ChatMessage, ErrorMessage } from '@/types'
 
 let timer
+
+inject()
 
 export default () => {
   let inputRef: HTMLTextAreaElement
